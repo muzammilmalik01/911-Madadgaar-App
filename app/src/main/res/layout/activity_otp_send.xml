@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".OTP.OTP_Send"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/titletxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OTP Verification"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/PHONETXT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/sendOTPbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send OTP" />
+</LinearLayout>

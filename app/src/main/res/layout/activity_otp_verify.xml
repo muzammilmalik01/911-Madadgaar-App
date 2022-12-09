@@ -5,45 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Registration"
-    android:layout_gravity="center"
     android:gravity="center"
+    tools:context=".OTP.OTP_Verify"
     android:padding="20dp">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verifying OTP"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textSize="30sp"/>
+
     <EditText
-        android:id="@+id/CNICET"
+        android:id="@+id/userOTPET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:hint="Enter CNIC" />
-
-    <EditText
-        android:id="@+id/PHONEET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="Enter Phone" />
-
-    <EditText
-        android:id="@+id/NAMEET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Enter Name"/>
+        android:maxLength="6"
+        android:hint="Enter OTP" />
 
     <Button
-        android:id="@+id/REGBTN"
+        android:id="@+id/verify_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register" />
-
-    <Button
-        android:id="@+id/testBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:onClick="callNextScreenFromOTP"
+        android:text="Verify code"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_margin="30dp"
+        android:textSize="15sp"
+        android:padding="8dp"
+        android:transitionName="transition_OTP_screen"
+        tools:ignore="OnClick" />
 
 </LinearLayout>

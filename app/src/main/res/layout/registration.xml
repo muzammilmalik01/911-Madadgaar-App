@@ -2,37 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MainlinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Registration"
     android:layout_gravity="center"
     android:gravity="center"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Registration">
 
     <EditText
         android:id="@+id/CNICET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number"
-        android:hint="Enter CNIC" />
+        android:hint="Enter CNIC"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/PHONEET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number"
-        android:hint="Enter Phone" />
+        android:hint="Enter Phone"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/NAMEET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Enter Name"/>
+        android:hint="Enter Name"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/REGBTN"
@@ -44,6 +45,12 @@
         android:id="@+id/testBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Test OTP" />
+
+    <Button
+        android:id="@+id/LoginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login" />
 
 </LinearLayout>

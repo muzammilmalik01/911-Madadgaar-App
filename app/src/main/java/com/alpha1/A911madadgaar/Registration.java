@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Registration extends AppCompatActivity {
-    Button register, test;
+    Button register, test, login;
     EditText CNIC,PHONE,NAME;
     FirebaseFirestore db;
     String cnic,phone,name;
@@ -32,6 +32,7 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
         register = findViewById(R.id.REGBTN); //register Button on Activity Screen.
+        login = findViewById(R.id.LoginBtn);
         CNIC = findViewById(R.id.CNICET); // CNIC Edittext on Activity Screen.
         PHONE = findViewById(R.id.PHONEET); // PHONE Edittext on Activity Screen.
         NAME = findViewById(R.id.NAMEET); // NAME Edittext on Activity Screen.
@@ -41,6 +42,13 @@ public class Registration extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent testintent = new Intent(Registration.this,LoginActivity.class);
+                startActivity(testintent);
+            }
+        });
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +56,7 @@ public class Registration extends AppCompatActivity {
                 testintent.putExtra("PHONE","3164750937");
                 testintent.putExtra("CNIC","123456789");
                 testintent.putExtra("NAME","TEST USER");
+                testintent.putExtra("MODE","REG");
                 startActivity(testintent);
             }
         });
@@ -109,6 +118,7 @@ public class Registration extends AppCompatActivity {
                                                                     OTPVERIFICATIONSTART.putExtra("PHONE",phone);
                                                                     OTPVERIFICATIONSTART.putExtra("CNIC",cnic); // Passing the user's data to OTP Send Screen.
                                                                     OTPVERIFICATIONSTART.putExtra("NAME",name);
+                                                                    OTPVERIFICATIONSTART.putExtra("MODE","REG");
                                                                     startActivity(OTPVERIFICATIONSTART);
                                                                 }
                                                                 else //Provided number is already registered.

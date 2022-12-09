@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.alpha1.A911madadgaar.HomeScreen;
 import com.alpha1.A911madadgaar.LoginActivity;
 import com.alpha1.A911madadgaar.R;
 import com.alpha1.A911madadgaar.Registration;
@@ -30,11 +31,13 @@ public class OTP_Verify extends AppCompatActivity {
     String VerificationID,Userotp, CNIC,PHONE,NAME;
     Button verifybtn;
     FirebaseFirestore db;
+    String MODE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_verify);
 
+        MODE = getIntent().getStringExtra("MODE");
         CNIC = getIntent().getStringExtra("CNIC");
         PHONE = getIntent().getStringExtra("PHONE");
         NAME = getIntent().getStringExtra("NAME");
@@ -79,24 +82,35 @@ public class OTP_Verify extends AppCompatActivity {
                                 {
                                     if(task.isSuccessful())
                                     {
-                                        if(CNIC != null && PHONE!= null && NAME!= null)
+                                        if(MODE.equals("LOGIN"))
                                         {
-                                            Map<String, Object> user = new HashMap<>();
-                                            user.put("CNIC", CNIC);
-                                            user.put("PHONE", PHONE);
-                                            user.put("NAME", NAME);
-                                            db.collection("users").document(CNIC).set(user);
-                                            Toast.makeText(OTP_Verify.this, "The user has been registered Successfully.", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(OTP_Verify.this, LoginActivity.class));
-                                            finish();
+                                            //Logged In.
+                                            Intent Homescreen = new Intent(OTP_Verify.this, HomeScreen.class);
+                                            startActivity(Homescreen);
                                         }
-                                        else
+                                        else if (MODE.equals("REG"))
                                         {
-                                            Toast.makeText(OTP_Verify.this, "There was an error getting User Data from Intent.", Toast.LENGTH_SHORT).show();
-                                            Intent intent =  new Intent(OTP_Verify.this,Registration.class);
-                                            startActivity(intent);
-                                            finish();
+                                            //Reg Done
+                                            if(CNIC != null && PHONE!= null && NAME!= null)
+                                            {
+                                                Map<String, Object> user = new HashMap<>();
+                                                user.put("CNIC", CNIC);
+                                                user.put("PHONE", PHONE);
+                                                user.put("NAME", NAME);
+                                                db.collection("users").document(CNIC).set(user);
+                                                Toast.makeText(OTP_Verify.this, "The user has been registered Successfully.", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(OTP_Verify.this, HomeScreen.class));
+                                                finish();
+                                            }
+                                            else
+                                            {
+                                                Toast.makeText(OTP_Verify.this, "There was an error getting User Data from Intent.", Toast.LENGTH_SHORT).show();
+                                                Intent intent =  new Intent(OTP_Verify.this,Registration.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
                                         }
+
                                     }
                                     else
                                     {

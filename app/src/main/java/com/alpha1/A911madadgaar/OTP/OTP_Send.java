@@ -30,6 +30,7 @@ public class OTP_Send extends AppCompatActivity {
     String PHONE;
     TextView phoneTxt;
     FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +65,20 @@ public class OTP_Send extends AppCompatActivity {
 
                 @Override
                 public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
-
+                    Toast.makeText(OTP_Send.this, "Verification Completed", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onVerificationFailed(@NonNull FirebaseException e) {
                     Toast.makeText(OTP_Send.this, "Verification Failed.", Toast.LENGTH_SHORT).show();
+                    if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                        // Invalid request
+                        Toast.makeText(OTP_Send.this, "In-Valid Request", Toast.LENGTH_SHORT).show();
+                    } else if (e instanceof FirebaseTooManyRequestsException) {
+                        // The SMS quota for the project has been exceeded
+                        Toast.makeText(OTP_Send.this, "Quota Exceded", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
 
                 @Override
@@ -84,6 +93,7 @@ public class OTP_Send extends AppCompatActivity {
                     verify.putExtra("PHONE",PHONE); //User's Phone
                     verify.putExtra("CNIC",getIntent().getStringExtra("CNIC")); //User's Cnic
                     verify.putExtra("NAME",getIntent().getStringExtra("NAME")); // User's Name
+                    verify.putExtra("MODE",getIntent().getStringExtra("MODE"));
                     startActivity(verify);
                     finish();
                 }

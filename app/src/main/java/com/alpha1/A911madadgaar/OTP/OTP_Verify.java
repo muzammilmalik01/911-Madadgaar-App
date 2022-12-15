@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -86,6 +87,12 @@ public class OTP_Verify extends AppCompatActivity {
                                         {
                                             //Logged In.
                                             Intent Homescreen = new Intent(OTP_Verify.this, HomeScreen.class);
+                                            // Saving Logged In Status and CNIC in Shared Preferences.
+                                            SharedPreferences sharedPreferences = getSharedPreferences("STATUS",MODE_PRIVATE);
+                                            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                                            myEdit.putBoolean("LOGGEDIN",true);
+                                            myEdit.putString("CNIC",CNIC);
+                                            myEdit.apply();
                                             startActivity(Homescreen);
                                         }
                                         else if (MODE.equals("REG"))
@@ -100,6 +107,13 @@ public class OTP_Verify extends AppCompatActivity {
                                                 db.collection("users").document(CNIC).set(user);
                                                 Toast.makeText(OTP_Verify.this, "The user has been registered Successfully.", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(OTP_Verify.this, HomeScreen.class));
+                                                // Saving Logged In Status and CNIC in Shared Preferences.
+                                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("STATUS",MODE_PRIVATE);
+                                                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                                                myEdit.putBoolean("LOGGEDIN",true);
+                                                myEdit.putString("CNIC",CNIC);
+                                                myEdit.apply();
+                                                //finishing activity.
                                                 finish();
                                             }
                                             else

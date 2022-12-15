@@ -57,10 +57,10 @@ public class LoginActivity extends AppCompatActivity {
                                                 String phonefromdb = documentSnapshot.getString("PHONE");
                                                 if(phonefromdb.equals(PHONE))
                                                 {
-                                                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                                     Intent OTPVERIFICATION = new Intent(LoginActivity.this, OTP_Send.class);
                                                     OTPVERIFICATION.putExtra("MODE","LOGIN");
                                                     OTPVERIFICATION.putExtra("PHONE",PHONE);
+                                                    OTPVERIFICATION.putExtra("CNIC",CNIC);
                                                     startActivity(OTPVERIFICATION);
                                                 }
                                                 else

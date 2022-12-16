@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.alpha1.A911madadgaar.HomeScreen;
 import com.alpha1.A911madadgaar.LoginActivity;
 import com.alpha1.A911madadgaar.R;
@@ -33,6 +34,7 @@ public class OTP_Verify extends AppCompatActivity {
     Button verifybtn;
     FirebaseFirestore db;
     String MODE;
+    LottieAnimationView loading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,9 @@ public class OTP_Verify extends AppCompatActivity {
         NAME = getIntent().getStringExtra("NAME");
         db = FirebaseFirestore.getInstance();
 
+
+        loading = findViewById(R.id.loadinAnim);
+        loading.setVisibility(View.INVISIBLE);
         userotp = findViewById(R.id.userOTPET);//EditText where user enters OTP.
         VerificationID = getIntent().getStringExtra("vid");//Verification ID last Activity.
         verifybtn = findViewById(R.id.verify_btn);// click to verify the OTP.
@@ -52,6 +57,8 @@ public class OTP_Verify extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Userotp = userotp.getText().toString().trim();//OTP from EditText
+                verifybtn.setVisibility(View.INVISIBLE);
+                loading.setVisibility(View.VISIBLE);
                 if(Userotp.length() == 6)
                 {
                     if(VerificationID != null)
@@ -60,11 +67,15 @@ public class OTP_Verify extends AppCompatActivity {
                     }
                     else
                     {
+                        verifybtn.setVisibility(View.VISIBLE);
+                        loading.setVisibility(View.INVISIBLE);
                         Toast.makeText(OTP_Verify.this, "Error (No Verification ID)", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else
                 {
+                    verifybtn.setVisibility(View.VISIBLE);
+                    loading.setVisibility(View.INVISIBLE);
                     Toast.makeText(OTP_Verify.this, "Please enter 6 Digit OTP Code.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -83,6 +94,8 @@ public class OTP_Verify extends AppCompatActivity {
                                 {
                                     if(task.isSuccessful())
                                     {
+                                        verifybtn.setVisibility(View.VISIBLE);
+                                        loading.setVisibility(View.INVISIBLE);
                                         if(MODE.equals("LOGIN"))
                                         {
                                             //Logged In.
@@ -94,6 +107,7 @@ public class OTP_Verify extends AppCompatActivity {
                                             myEdit.putString("CNIC",CNIC);
                                             myEdit.apply();
                                             startActivity(Homescreen);
+                                            finish();
                                         }
                                         else if (MODE.equals("REG"))
                                         {
@@ -118,6 +132,8 @@ public class OTP_Verify extends AppCompatActivity {
                                             }
                                             else
                                             {
+                                                verifybtn.setVisibility(View.VISIBLE);
+                                                loading.setVisibility(View.INVISIBLE);
                                                 Toast.makeText(OTP_Verify.this, "There was an error getting User Data from Intent.", Toast.LENGTH_SHORT).show();
                                                 Intent intent =  new Intent(OTP_Verify.this,Registration.class);
                                                 startActivity(intent);
@@ -128,6 +144,8 @@ public class OTP_Verify extends AppCompatActivity {
                                     }
                                     else
                                     {
+                                        verifybtn.setVisibility(View.VISIBLE);
+                                        loading.setVisibility(View.INVISIBLE);
                                         Toast.makeText(OTP_Verify.this, "Invalid Code", Toast.LENGTH_SHORT).show();
                                     }
 

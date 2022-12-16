@@ -17,7 +17,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
-    Button login;
+    Button login,register;
     EditText cnic, phone;
     String CNIC,PHONE;
     FirebaseFirestore Database;
@@ -29,14 +29,15 @@ public class LoginActivity extends AppCompatActivity {
         login = findViewById(R.id.loginBtn);
         cnic = findViewById(R.id.cnicET);
         phone = findViewById(R.id.phoneET);
+        register = findViewById(R.id.regBtn);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CNIC = cnic.getText().toString().trim();
                 PHONE = phone.getText().toString().trim();
-                if(CNIC.isEmpty() && PHONE.isEmpty())
+                if(CNIC.length() <13 || PHONE.length() <10)
                 {
-                    Toast.makeText(LoginActivity.this, "Please Enter Details.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Incomplete/Invalid Data Entered.", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -82,6 +83,13 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
                 }
+            }
+        });
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotoReg = new Intent(LoginActivity.this,Registration.class);
+                startActivity(gotoReg);
             }
         });
 

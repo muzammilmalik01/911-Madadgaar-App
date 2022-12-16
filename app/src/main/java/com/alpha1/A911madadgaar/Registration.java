@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Registration extends AppCompatActivity {
-    Button register, test, login;
+    Button register,login;
     EditText CNIC,PHONE,NAME;
     FirebaseFirestore db;
     String cnic,phone,name;
@@ -36,9 +36,6 @@ public class Registration extends AppCompatActivity {
         CNIC = findViewById(R.id.CNICET); // CNIC Edittext on Activity Screen.
         PHONE = findViewById(R.id.PHONEET); // PHONE Edittext on Activity Screen.
         NAME = findViewById(R.id.NAMEET); // NAME Edittext on Activity Screen.
-        test = findViewById(R.id.testBtn);
-
-
 
         db = FirebaseFirestore.getInstance();
 
@@ -46,17 +43,6 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent testintent = new Intent(Registration.this,LoginActivity.class);
-                startActivity(testintent);
-            }
-        });
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent testintent = new Intent(Registration.this,OTP_Send.class);
-                testintent.putExtra("PHONE","3164750937");
-                testintent.putExtra("CNIC","123456789");
-                testintent.putExtra("NAME","TEST USER");
-                testintent.putExtra("MODE","REG");
                 startActivity(testintent);
             }
         });

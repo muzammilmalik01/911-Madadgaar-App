@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primaryText">#DAD7CD</color> //normal text
+    <color name="secondaryText">#A3B18A</color> //headline or Title.
+    <color name="primaryBackground">#344E41</color> //Main Background
+    <color name="secondaryBackground">#3A5A40</color> //secondary Background.
+    <color name="prime">#588157</color> //for buttons or outlines.
 </resources>

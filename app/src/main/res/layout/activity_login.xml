@@ -7,36 +7,111 @@
     tools:context=".LoginActivity"
     android:orientation="vertical"
     android:padding="20dp"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/primaryBackground">
 
-    <TextView
-        android:id="@+id/loginTitle"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/cnicET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="Enter CNIC" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
 
-    <EditText
-        android:id="@+id/phoneET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        android:hint="Enter Phone" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loginanim"
+                android:layout_marginBottom="30dp"/>
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login" />
+            <TextView
+                android:id="@+id/loginTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/euclidbold"
+                android:text="Login"
+                android:textAlignment="viewStart"
+                android:textColor="@color/secondaryText"
+                android:textSize="40sp" />
+
+            <EditText
+                android:id="@+id/cnicET"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edittext_field"
+                android:drawableRight="@drawable/idcardlogo"
+                android:ems="10"
+                android:fontFamily="@font/euclidmedium"
+                android:hint="Enter CNIC"
+                android:inputType="number"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/primaryBackground"
+                android:textColorHint="@color/prime"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/phoneET"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edittext_field"
+                android:drawableRight="@drawable/smartphonelogo"
+                android:ems="10"
+                android:fontFamily="@font/euclidmedium"
+                android:hint="Enter Phone (+923XXXXXXXXX)"
+                android:inputType="phone"
+                android:paddingLeft="20dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/primaryBackground"
+                android:textColorHint="@color/prime"
+                android:textSize="17sp"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/loginBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_prime"
+                    android:fontFamily="@font/euclidmedium"
+                    android:text="Login"
+                    android:textColor="@color/primaryText"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:layout_marginEnd="5dp"/>
+
+                <Button
+                    android:id="@+id/regBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Register"
+                    android:background="@drawable/button_prime"
+                    android:fontFamily="@font/euclidmedium"
+                    android:textColor="@color/primaryText"
+                    android:layout_margin="10dp"
+                    android:layout_marginStart="5dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>

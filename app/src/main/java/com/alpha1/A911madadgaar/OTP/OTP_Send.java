@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.alpha1.A911madadgaar.R;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
@@ -30,6 +31,7 @@ public class OTP_Send extends AppCompatActivity {
     String PHONE;
     TextView phoneTxt;
     FirebaseAuth mAuth;
+    LottieAnimationView loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +41,16 @@ public class OTP_Send extends AppCompatActivity {
         sendotp = findViewById(R.id.sendOTPbtn);
         PHONE = getIntent().getStringExtra("PHONE");
         phoneTxt = findViewById(R.id.PHONETXT);
-        phoneTxt.setText(PHONE);
+        phoneTxt.setText("Send OTP to verify this number: +92"+PHONE+"?");
+        loading = findViewById(R.id.loadinAnim);
+        loading.setVisibility(View.INVISIBLE);
 
         mAuth = FirebaseAuth.getInstance(); 
         sendotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sendotp.setVisibility(View.INVISIBLE);
+                loading.setVisibility(View.VISIBLE);
                 sendverificationcode(PHONE);
             }
 
@@ -66,10 +72,14 @@ public class OTP_Send extends AppCompatActivity {
                 @Override
                 public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
                     Toast.makeText(OTP_Send.this, "Verification Completed", Toast.LENGTH_SHORT).show();
+                    sendotp.setVisibility(View.VISIBLE);
+                    loading.setVisibility(View.INVISIBLE);
                 }
 
                 @Override
                 public void onVerificationFailed(@NonNull FirebaseException e) {
+                    sendotp.setVisibility(View.VISIBLE);
+                    loading.setVisibility(View.INVISIBLE);
                     Toast.makeText(OTP_Send.this, "Verification Failed.", Toast.LENGTH_SHORT).show();
                     if (e instanceof FirebaseAuthInvalidCredentialsException) {
                         // Invalid request
@@ -87,6 +97,8 @@ public class OTP_Send extends AppCompatActivity {
                     // The SMS verification code has been sent to the provided phone number, we
                     // now need to ask the  user to enter the code and then construct a credential
                     // by combining the code with a verification ID.
+                    loading.setVisibility(View.INVISIBLE);
+                    sendotp.setVisibility(View.VISIBLE);
                     Toast.makeText(OTP_Send.this, "The OTP has been sent.", Toast.LENGTH_SHORT).show();
                     Intent verify = new Intent(OTP_Send.this,OTP_Verify.class);
                     verify.putExtra("vid",s);

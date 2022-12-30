@@ -118,6 +118,7 @@ public class OTP_Verify extends AppCompatActivity {
                                                 user.put("CNIC", CNIC);
                                                 user.put("PHONE", PHONE);
                                                 user.put("NAME", NAME);
+                                                user.put("WARNING", "0");
                                                 db.collection("users").document(CNIC).set(user);
                                                 Toast.makeText(OTP_Verify.this, "The user has been registered Successfully.", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(OTP_Verify.this, HomeScreen.class));

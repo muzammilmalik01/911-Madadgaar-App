@@ -8,11 +8,41 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <TextView
-        android:id="@+id/cnicSP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CNIC"
-        android:textSize="25dp"
-        android:textAlignment="center"/>
+    <LinearLayout
+        android:id="@+id/reportTile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:background="@color/primaryBackground"
+        >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Report"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/searchTile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:background="@color/primaryBackground"
+        >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search Report"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
 </LinearLayout>

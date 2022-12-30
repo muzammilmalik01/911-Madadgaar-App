@@ -13,9 +13,15 @@
         android:theme="@style/Theme.911Madadgaar"
         tools:targetApi="31">
         <activity
+            android:name=".reportSubmission"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -36,8 +42,6 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -56,7 +60,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".Registration"
             android:exported="true">

@@ -22,8 +22,8 @@ public class SplashScreen extends AppCompatActivity {
 
                 sh = getSharedPreferences(STATUS, Context.MODE_PRIVATE);
                 Boolean LOGINSTATUS = sh.getBoolean("LOGGEDIN", false);
-                String CNIC = sh.getString("CNIC", "XXX");
-                if(LOGINSTATUS && !CNIC.isEmpty())
+                String CNIC = sh.getString("CNIC", null);
+                if(LOGINSTATUS && CNIC!=null)
                 {
                     Intent i = new Intent(SplashScreen.this, HomeScreen.class);
                     startActivity(i);

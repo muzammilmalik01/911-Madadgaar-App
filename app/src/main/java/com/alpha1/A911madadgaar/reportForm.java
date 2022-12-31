@@ -3,8 +3,33 @@ package com.alpha1.A911madadgaar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class reportForm extends AppCompatActivity {
-    public static String reportID,date,time,address,location,incident,description;
+    public static String reportID,date,time,address,location,incident,description,city;
     public static String usercnic,username,userphone;
+    public static double lon,lat;
+
+    public static String getCity() {
+        return city;
+    }
+
+    public static void setCity(String city) {
+        reportForm.city = city;
+    }
+
+    public static double getLon() {
+        return lon;
+    }
+
+    public static void setLon(double lon) {
+        reportForm.lon = lon;
+    }
+
+    public static double getLat() {
+        return lat;
+    }
+
+    public static void setLat(double lat) {
+        reportForm.lat = lat;
+    }
 
     public static String getReportID() {
         return reportID;

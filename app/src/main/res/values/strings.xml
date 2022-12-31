@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">911 Madadgaar</string>
+    <string name="default_spinner">Select an Incident</string>
+    <string-array name="incidents_array">
+        <item>Not Selected</item>
+        <item>Robbery</item>
+        <item>Snatching</item>
+        <item>Hit and Run</item>
+        <item>Road Accident</item>
+        <item>Domestic Accident</item>
+        <item>Fire</item>
+        <item>Animal Rescue</item>
+        <item>Fight</item>
+    </string-array>
 </resources>

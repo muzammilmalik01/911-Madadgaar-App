@@ -28,7 +28,6 @@ public class HomeScreen extends AppCompatActivity {
         SharedPreferences sh = getApplicationContext().getSharedPreferences("STATUS", Context.MODE_PRIVATE);
         cnic = sh.getString("CNIC",null);
         Database = FirebaseFirestore.getInstance();
-
         Database.collection("users")
                 .document(cnic)
                 .get()

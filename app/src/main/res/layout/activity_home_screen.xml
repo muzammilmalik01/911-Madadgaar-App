@@ -6,43 +6,108 @@
     android:layout_height="match_parent"
     tools:context=".HomeScreen"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/primaryBackground">
 
-    <LinearLayout
-        android:id="@+id/reportTile"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        android:layout_margin="20dp"
-        android:background="@color/primaryBackground"
-        >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView2"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Report"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:layout_weight="1"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <LinearLayout
-        android:id="@+id/searchTile"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        android:layout_margin="20dp"
-        android:background="@color/primaryBackground"
-        >
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/secondaryText">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Search Report"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:layout_weight="1"/>
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/person_details_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Name\nCNIC\nPhone"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/euclidmedium"
+                        android:textColor="@color/primaryBackground"
+                        android:textSize="20sp"/>
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/homescreen_person_anim"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/reportTile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/homescreen_tiles"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:elevation="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Report"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/euclidbold"
+                        android:textSize="15sp"
+                        android:textColor="@color/secondaryBackground"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/searchTile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/homescreen_tiles"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Search Report"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/euclidbold"
+                        android:textSize="15sp"
+                        android:textColor="@color/secondaryBackground"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

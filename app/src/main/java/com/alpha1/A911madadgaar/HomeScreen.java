@@ -21,12 +21,14 @@ public class HomeScreen extends AppCompatActivity {
     LinearLayout reportTile,searchReport;
     FirebaseFirestore Database;
     String cnic;
+    TextView personDetailsTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         SharedPreferences sh = getApplicationContext().getSharedPreferences("STATUS", Context.MODE_PRIVATE);
         cnic = sh.getString("CNIC",null);
+        personDetailsTxt = findViewById(R.id.person_details_txt);
         Database = FirebaseFirestore.getInstance();
         Database.collection("users")
                 .document(cnic)
@@ -43,6 +45,8 @@ public class HomeScreen extends AppCompatActivity {
                                 user.setFullname(documentSnapshot.getString("NAME"));
                                 user.setPhone(documentSnapshot.getString("PHONE"));
                                 user.setWarning(documentSnapshot.getString("WARNING"));
+
+                                personDetailsTxt.setText(user.getFullname()+"\n"+user.getCnic()+"\n0"+user.getPhone());
 
                             }
                             else

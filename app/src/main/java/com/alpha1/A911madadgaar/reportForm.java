@@ -3,9 +3,18 @@ package com.alpha1.A911madadgaar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class reportForm extends AppCompatActivity {
-    public static String reportID,date,time,address,location,incident,description,city;
+    public static String reportID,date,time,address,location,incident,description,city,status;
     public static String usercnic,username,userphone;
     public static double lon,lat;
+
+
+    public static String getStatus() {
+        return status;
+    }
+
+    public static void setStatus(String status) {
+        reportForm.status = status;
+    }
 
     public static String getCity() {
         return city;

@@ -126,7 +126,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/editTextTextMultiLine"
+                    android:id="@+id/descriptionEdit"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:background="@drawable/edittext_field_description"
@@ -190,6 +190,77 @@
                     android:textColor="@color/primaryText"
                     android:layout_weight="0.5"
                     android:background="@drawable/button_prime"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Image Proof:"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/euclidmedium"
+                    android:textColor="@color/secondaryText"
+                    android:layout_marginBottom="10dp"/>
+
+                <ImageView
+                    android:id="@+id/proofImageView"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    app:srcCompat="@drawable/picture"
+                    android:layout_gravity="start"/>
+
+                <Button
+                    android:id="@+id/imageSelectButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Select ❌"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/euclidmedium"
+                    android:textColor="@color/primaryText"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/button_prime"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/euclidmedium"
+                    android:text="Submit?"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="22sp" />
+
+                <Button
+                    android:id="@+id/submitBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/euclidmedium"
+                    android:textColor="@color/primaryText"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/button_prime"
+
+                    android:padding="10dp"/>
             </LinearLayout>
 
 

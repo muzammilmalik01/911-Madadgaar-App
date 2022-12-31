@@ -1,11 +1,14 @@
 package com.alpha1.A911madadgaar;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.PersistableBundle;
@@ -13,15 +16,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -41,22 +48,35 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
+//Todo: BUG = Multiple Markers when user clicks Location Button multiple times.
 public class reportSubmission extends AppCompatActivity implements OnMapReadyCallback {
-    TextView addressTxt,date_txt,time_txt;
-    Button collectLocation,collectDT;
+    TextView addressTxt,date_txt,time_txt, selectIncidentTxt;
+    Button collectLocation,collectDT,selectImage,submitBtn;
     Spinner spinner;
     LocationRequest locationRequest;
     MapView mapView;
     GoogleMap map;
+    String image;
+    Uri IMAGE;
+    ImageView proof;
+    EditText descriptionEdit;
+    FirebaseFirestore Database;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     @Override
@@ -64,8 +84,9 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_submission);
 
+        Database = FirebaseFirestore.getInstance();
 
-        /*Initializing All Variables of ReportForm Class Start*/
+        /* Initializing All Variables of ReportForm Class Start */
         reportForm.setIncident("Not Selected");
         reportForm.setReportID(null);
         reportForm.setCity(null);
@@ -78,6 +99,8 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
         reportForm.setUsername(user.getFullname());
         reportForm.setUserphone(user.getPhone());
         reportForm.setDescription(null);
+        reportForm.setStatus("Pending");
+        image = null;
         /* Initializing All Variables of ReportForm Class End */
 
         /*Assigning IDs to Variables Start*/
@@ -88,6 +111,11 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
         collectDT = findViewById(R.id.setDTbtn);
         date_txt = findViewById(R.id.date_txt);
         time_txt = findViewById(R.id.time_txt);
+        selectIncidentTxt = findViewById(R.id.selectIncidentTxt);
+        selectImage = findViewById(R.id.imageSelectButton);
+        proof = findViewById(R.id.proofImageView);
+        submitBtn = findViewById(R.id.submitBtn);
+        descriptionEdit = findViewById(R.id.descriptionEdit);
         /* Assigning IDs to Variables End */
 
         /* Stuff related to Location Start */
@@ -118,7 +146,8 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // Get the selected item
-                    reportForm.setIncident(parent.getItemAtPosition(position).toString()); //incident set.
+                reportForm.setIncident(parent.getItemAtPosition(position).toString());
+                selectIncidentTxt.setText("Select Incident: "+reportForm.getIncident()); //incident set.
                 // Do something with the selection
             }
 
@@ -228,6 +257,138 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
                 setTimeDate();
             }
         }); //collect user's device Date & Time.
+        selectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePicker.with(reportSubmission.this)
+                        .start();
+            }
+        }); //select Image from Gallery or Camera
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reportForm.setDescription(descriptionEdit.getText().toString().trim());
+                String description = descriptionEdit.getText().toString().trim();
+                if(reportForm.getLat()==0 ||reportForm.getLon()==0 || description.length()<=0 || reportForm.getDescription()== null || reportForm.getTime() == null || reportForm.getDate() == null || reportForm.getIncident().equals("Not Selected"))
+                {
+                    if(reportForm.getLat()==0 ||reportForm.getLon()==0 || reportForm.getAddress() == null)
+                    {
+                        Toast.makeText(reportSubmission.this, "Please set your location!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(description.length()<=0)
+                    {
+                        Toast.makeText(reportSubmission.this, "Please fill the description!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(reportForm.getIncident().equals("Not Selected"))
+                    {
+                        Toast.makeText(reportSubmission.this, "Please select an Incident!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(reportForm.getTime() == null || reportForm.getDate() == null)
+                    {
+                        Toast.makeText(reportSubmission.this, "Please set Date & Time!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    Database.collection("reportnumber")
+                            .document("reportnumber")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if(task.isSuccessful())
+                                    {
+                                        DocumentSnapshot documentSnapshot = task.getResult();
+                                        if(documentSnapshot.exists())
+                                        {
+                                            String reportnumber = documentSnapshot.getString("current");
+                                            reportForm.setReportID(documentSnapshot.getString("current"));
+                                            int incrementreportnumber = Integer.valueOf(reportnumber);
+                                            incrementreportnumber++;
+
+                                            reportnumber = String.valueOf(incrementreportnumber);
+                                            FirebaseFirestore updatern;
+                                            updatern = FirebaseFirestore.getInstance();
+                                            Map<String, Object> reportnumberupdate = new HashMap<>();
+                                            reportnumberupdate.put("current", reportnumber);
+                                            updatern.collection("reportnumber")
+                                                    .document("reportnumber")
+                                                    .set(reportnumberupdate);
+
+                                            /* Report Submission Start */
+                                            Map<String, Object> report = new HashMap<>();
+                                            report.put("usercnic", reportForm.getUsercnic());
+                                            report.put("userphone", reportForm.getUserphone());
+                                            report.put("username", reportForm.getUsername());
+                                            report.put("address", reportForm.getAddress());
+                                            String lat = String.valueOf(reportForm.getLat());
+                                            String lon = String.valueOf(reportForm.getLon());
+                                            report.put("lat", lat);
+                                            report.put("lon", lon);
+                                            report.put("incident", reportForm.getIncident());
+                                            report.put("description", reportForm.getDescription());
+                                            report.put("time", reportForm.getTime());
+                                            report.put("date", reportForm.getDate());
+                                            report.put("status", reportForm.getStatus());
+                                            report.put("reportno", reportForm.getReportID());
+                                            if(image!=null)
+                                            {
+                                                report.put("image", "code1");// code1 == Image Attached
+                                                FirebaseStorage storage = FirebaseStorage.getInstance();
+                                                StorageReference storageRef = storage.getReference();
+                                                StorageReference mountainsRef = storageRef.child("reports/"+reportForm.getReportID()+"/");
+                                                mountainsRef.putFile(IMAGE);
+                                            }
+                                            else
+                                            {
+                                                report.put("image", "code0");// code1 == Image NOT Attached
+                                            }
+                                            //Writing the Report.
+                                            FirebaseFirestore writeReport;
+                                            writeReport = FirebaseFirestore.getInstance();
+                                            writeReport.collection("reports")
+                                                    .document(reportForm.getReportID())
+                                                    .set(report)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            reportForm.setIncident("Not Selected");
+                                                            reportForm.setReportID(null);
+                                                            reportForm.setCity(null);
+                                                            reportForm.setAddress(null);
+                                                            reportForm.setLat(0);
+                                                            reportForm.setLon(0);
+                                                            reportForm.setDate(null);
+                                                            reportForm.setTime(null);
+                                                            reportForm.setUsercnic(user.getCnic());
+                                                            reportForm.setUsername(user.getFullname());
+                                                            reportForm.setUserphone(user.getPhone());
+                                                            reportForm.setDescription(null);
+                                                            reportForm.setStatus("Pending");
+                                                            image = null;
+
+                                                            Toast.makeText(reportSubmission.this, "Report Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                                            //confirmation Screen goes here.
+                                                            Intent gotoConfirmationScreen = new Intent(reportSubmission.this,HomeScreen.class);
+                                                            startActivity(gotoConfirmationScreen);
+                                                            finish();
+
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(reportSubmission.this, "Error While submitting report.", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                                /* Report Submission End */
+
+                                        }
+                                    }
+                                }
+                            });
+                }
+            }
+        });
         /* All Buttons Start*/
     }
     /* All Functions Start*/
@@ -285,6 +446,32 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
     } //function to set Time and Date.
     /* All Buttons End*/
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+            //Image Uri will not be null for RESULT_OK
+            Uri uri  = data.getData();
+
+            image = uri.toString();
+            IMAGE = uri;
+            proof.setImageURI(IMAGE);
+            selectImage.setText("Select Image ✔️");
+            Toast.makeText(this, "Image Selected Successfully.", Toast.LENGTH_SHORT).show();
+            // Use Uri object instead of File to avoid storage permissions
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show();
+            image = null;
+        } else {
+            proof.setImageResource(R.drawable.picture);
+            IMAGE = null;
+            image = null;
+            selectImage.setText("Select Image ❌");
+            Toast.makeText(this, "No Image Selected / Selected Image Unselected", Toast.LENGTH_SHORT).show();
+        }
+    } //Image Selection.
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {

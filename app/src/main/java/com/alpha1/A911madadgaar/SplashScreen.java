@@ -8,6 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.alpha1.A911madadgaar.user.HomeScreen;
+import com.alpha1.A911madadgaar.user.Registration;
+
 public class SplashScreen extends AppCompatActivity {
     SharedPreferences sh;
     public static final String STATUS = "STATUS";

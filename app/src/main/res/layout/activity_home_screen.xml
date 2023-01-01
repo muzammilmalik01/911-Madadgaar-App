@@ -38,7 +38,7 @@
                         android:text="Name\nCNIC\nPhone"
                         android:gravity="center_vertical"
                         android:layout_marginStart="5dp"
-                        android:fontFamily="@font/euclidmedium"
+                        android:fontFamily="@font/euclidbold"
                         android:textColor="@color/primaryBackground"
                         android:textSize="20sp"/>
 

@@ -12,10 +12,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.alpha1.A911madadgaar.HomeScreen;
-import com.alpha1.A911madadgaar.LoginActivity;
+import com.alpha1.A911madadgaar.user.HomeScreen;
+import com.alpha1.A911madadgaar.user.LoginActivity;
 import com.alpha1.A911madadgaar.R;
-import com.alpha1.A911madadgaar.Registration;
+import com.alpha1.A911madadgaar.user.Registration;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

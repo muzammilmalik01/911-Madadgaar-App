@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.admin_search_report"
+    android:background="@color/primaryBackground"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search Reports"
+                android:textSize="35sp"
+                android:fontFamily="@font/euclidmedium"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/primaryText"/>
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/default_logo"
+                android:layout_gravity="left"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/adsearchBar"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:ems="10"
+                android:layout_weight="2"
+                android:inputType="number"
+                android:background="@drawable/edittext_field"
+                android:hint="Enter Report No"
+                android:paddingLeft="10dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/euclidmedium"
+                android:textColor="@color/primaryBackground"
+                android:textColorHint="@color/primaryBackground"/>
+
+            <ImageView
+                android:id="@+id/adsearchBtn"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/searchicon"
+                android:layout_gravity="center"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/adloadinAnim"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loadinganim"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/adreportInfoSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/adreportnotxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Report No#"
+                android:fontFamily="@font/euclidbold"
+                android:textSize="30sp"
+                android:textColor="@color/secondaryText"
+                />
+
+            <TextView
+                android:id="@+id/adincidenttxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Incident"
+                android:fontFamily="@font/euclidmedium"
+                android:textSize="21sp"
+                android:textColor="@color/primaryText"/>
+
+            <TextView
+                android:id="@+id/adstatusTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:fontFamily="@font/euclidmedium"
+                android:textSize="20sp"
+                android:textColor="@color/primaryText"/>
+
+            <TextView
+                android:id="@+id/adtimeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:fontFamily="@font/euclidmedium"
+                android:textSize="20sp"
+                android:textColor="@color/primaryText"/>
+
+            <TextView
+                android:id="@+id/addateTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:fontFamily="@font/euclidmedium"
+                android:textSize="20sp"
+                android:textColor="@color/primaryText"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/addescriptionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:fontFamily="@font/euclidbold"
+                    android:textSize="30sp"
+                    android:textColor="@color/secondaryText"/>
+
+                <TextView
+                    android:id="@+id/addescriptiontxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="18sp"
+                    android:textColor="@color/primaryText"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/locationTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:fontFamily="@font/euclidbold"
+                    android:textSize="30sp"
+                    android:textColor="@color/secondaryText"/>
+
+                <TextView
+                    android:id="@+id/adaddresstxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="18sp"
+                    android:textColor="@color/primaryText"/>
+
+                <TextView
+                    android:id="@+id/adcityTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="18sp"
+                    android:textColor="@color/primaryText"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/proofTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Proof"
+                    android:fontFamily="@font/euclidbold"
+                    android:textSize="30sp"
+                    android:textColor="@color/secondaryText"/>
+
+                <TextView
+                    android:id="@+id/adimageTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Attached / Not Attached"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="17sp"
+                    android:textColor="@color/primaryText"/>
+
+                <ImageView
+                    android:id="@+id/adproofImage"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    app:srcCompat="@drawable/picture"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/acceptRejectSection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/acceptrejectTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Accept / Reject"
+                    android:fontFamily="@font/euclidbold"
+                    android:textSize="30sp"
+                    android:textColor="@color/secondaryText"/>
+
+                <CheckBox
+                    android:id="@+id/adcheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Warn User" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/adrejectButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Reject"
+                        android:background="@drawable/button_prime"
+                        android:layout_margin="10dp"/>
+
+                    <Button
+                        android:id="@+id/adacceptButton"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Accept"
+                        android:background="@drawable/button_prime"
+                        android:layout_margin="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

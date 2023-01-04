@@ -1,113 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeScreen"
-    android:orientation="vertical"
+    android:background="@color/primaryBackground"
     android:gravity="center"
-    android:background="@color/primaryBackground">
+    android:orientation="vertical"
+    tools:context=".user.HomeScreen">
 
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:padding="20dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/secondaryText">
+                android:layout_width="200dp"
+                android:layout_height="300dp"
+                android:layout_gravity="start"
+                app:cardBackgroundColor="@color/secondaryText"
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:background="@color/prime"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/fulllogow" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/memojihomescreen" />
 
                     <TextView
                         android:id="@+id/person_details_txt"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:text="Name\nCNIC\nPhone"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="5dp"
                         android:fontFamily="@font/euclidbold"
-                        android:textColor="@color/primaryBackground"
-                        android:textSize="20sp"/>
+                        android:gravity="center_vertical"
+                        android:text="Name\nCNIC"
+                        android:textColor="@color/primaryText"
+                        android:textSize="20sp" />
 
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/animationView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/homescreen_person_anim"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"/>
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:id="@+id/reportTile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/homescreen_tiles"
-                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:elevation="10dp"
-                    >
+                    android:orientation="horizontal"
+                    app:cardBackgroundColor="@color/prime"
+                    app:cardCornerRadius="20dp">
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Report"
-                        android:textAlignment="center"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/euclidbold"
-                        android:textSize="15sp"
-                        android:textColor="@color/secondaryBackground"/>
-                </LinearLayout>
+                        android:text="Report"
+                        android:textColor="@color/primaryText"
+                        android:textSize="15sp" />
 
-                <LinearLayout
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="right"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/rightarrow" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/searchTile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/homescreen_tiles"
-                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    app:cardBackgroundColor="@color/prime"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="right"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/searchicon" />
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Search Report"
-                        android:textAlignment="center"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/euclidbold"
-                        android:textSize="15sp"
-                        android:textColor="@color/secondaryBackground"/>
-                </LinearLayout>
+                        android:text="Search Report"
+                        android:textColor="@color/primaryText"
+                        android:textSize="15sp" />
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
-
         </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/logoutBtn"
+            android:layout_width="50dp"
+            android:layout_height="75dp"
+            app:srcCompat="@drawable/logout"
+            android:layout_gravity="center"
+            android:layout_marginTop="245dp"
+            />
+    </LinearLayout>
+</ScrollView>

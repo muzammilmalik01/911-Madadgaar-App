@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.alpha1.A911madadgaar.user.HomeScreen;
+import com.alpha1.A911madadgaar.user.LoginActivity;
 import com.alpha1.A911madadgaar.user.Registration;
 
 public class SplashScreen extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class SplashScreen extends AppCompatActivity {
                 }
                 else
                 {
-                    Intent i = new Intent(SplashScreen.this, Registration.class);
+                    Intent i = new Intent(SplashScreen.this, LoginActivity.class);
                     startActivity(i);
                     finish();
                 }

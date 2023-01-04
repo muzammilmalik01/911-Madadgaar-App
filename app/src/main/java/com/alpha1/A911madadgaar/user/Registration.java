@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alpha1.A911madadgaar.OTP.OTP_Send;
@@ -23,11 +24,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Registration extends AppCompatActivity {
-    Button register,login;
+    Button register;
     EditText CNIC,PHONE,NAME;
     FirebaseFirestore db;
     String cnic,phone,name;
     Integer count;
+    TextView login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +57,15 @@ public class Registration extends AppCompatActivity {
                 phone = PHONE.getText().toString().trim(); //getting PHONE from editTexts.
                 name = NAME.getText().toString().trim(); //getting NAME from editTexts.
 
-                if(cnic.isEmpty() || phone.isEmpty() || name.isEmpty()) //check for NULL editTexts.
+                if(cnic.length() != 13 || phone.length() != 10 || name.isEmpty()) //check for NULL editTexts.
                 {
-                    if(cnic.isEmpty())
+                    if(cnic.length() != 13)
                     {
-                        Toast.makeText(Registration.this, "Please enter your CNIC.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration.this, "Please enter 13 Digit CNIC Number.", Toast.LENGTH_SHORT).show();
                     }
-                    else if (phone.isEmpty())
+                    else if (phone.length() != 10)
                     {
-                        Toast.makeText(Registration.this, "Please enter your Phone Number.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration.this, "Please enter correct Phone Number.\nFormat: 3xxxxxxxxx", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -110,7 +112,7 @@ public class Registration extends AppCompatActivity {
                                                                 }
                                                                 else //Provided number is already registered.
                                                                 {
-                                                                    Toast.makeText(Registration.this, "Number Already Exists. Exists.", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(Registration.this, "Number Already Exists.", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             }
 

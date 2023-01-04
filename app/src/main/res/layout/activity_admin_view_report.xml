@@ -1,9 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.admin_view_report">
+    tools:context=".admin.admin_view_report"
+    android:background="@color/primaryBackground"
+    android:padding="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Incident Report"
+                android:textSize="35sp"
+                android:fontFamily="@font/euclidmedium"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/primaryText"/>
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/default_logo"
+                android:layout_gravity="left"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/reportnotxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Report No#"
+            android:fontFamily="@font/euclidbold"
+            android:textSize="30sp"
+            android:textColor="@color/secondaryText"
+            />
+
+        <TextView
+            android:id="@+id/incidenttxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Incident"
+            android:fontFamily="@font/euclidmedium"
+            android:textSize="21sp"
+            android:textColor="@color/primaryText"/>
+
+        <TextView
+            android:id="@+id/statusTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:fontFamily="@font/euclidmedium"
+            android:textSize="20sp"
+            android:textColor="@color/primaryText"/>
+
+        <TextView
+            android:id="@+id/timeTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:fontFamily="@font/euclidmedium"
+            android:textSize="20sp"
+            android:textColor="@color/primaryText"/>
+
+        <TextView
+            android:id="@+id/dateTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:fontFamily="@font/euclidmedium"
+            android:textSize="20sp"
+            android:textColor="@color/primaryText"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/descriptionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:fontFamily="@font/euclidbold"
+                android:textSize="30sp"
+                android:textColor="@color/secondaryText"/>
+
+            <TextView
+                android:id="@+id/descriptiontxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:fontFamily="@font/euclidregular"
+                android:textSize="18sp"
+                android:textColor="@color/primaryText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/locationTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:fontFamily="@font/euclidbold"
+                android:textSize="30sp"
+                android:textColor="@color/secondaryText"/>
+
+            <TextView
+                android:id="@+id/addresstxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:fontFamily="@font/euclidregular"
+                android:textSize="18sp"
+                android:textColor="@color/primaryText"/>
+
+            <TextView
+                android:id="@+id/cityTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:fontFamily="@font/euclidregular"
+                android:textSize="18sp"
+                android:textColor="@color/primaryText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/proofTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Proof"
+                android:fontFamily="@font/euclidbold"
+                android:textSize="30sp"
+                android:textColor="@color/secondaryText"/>
+
+            <TextView
+                android:id="@+id/imageTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Attached / Not Attached"
+                android:fontFamily="@font/euclidregular"
+                android:textSize="17sp"
+                android:textColor="@color/primaryText"/>
+
+            <ImageView
+                android:id="@+id/proofImage"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                app:srcCompat="@drawable/picture"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/acceptrejectTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Accept / Reject"
+                android:fontFamily="@font/euclidbold"
+                android:textSize="30sp"
+                android:textColor="@color/secondaryText"/>
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Warn User" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/rejectButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reject"
+                    android:background="@drawable/button_prime"
+                    android:layout_margin="10dp"/>
+
+                <Button
+                    android:id="@+id/acceptButton"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Accept"
+                    android:background="@drawable/button_prime"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

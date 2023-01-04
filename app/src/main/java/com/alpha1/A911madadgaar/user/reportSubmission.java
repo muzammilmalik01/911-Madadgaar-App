@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.alpha1.A911madadgaar.R;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.common.api.ApiException;
@@ -75,6 +76,7 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
     ImageView proof;
     EditText descriptionEdit;
     FirebaseFirestore Database;
+    LottieAnimationView loadinAnim;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     @Override
@@ -114,6 +116,8 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
         proof = findViewById(R.id.proofImageView);
         submitBtn = findViewById(R.id.submitBtn);
         descriptionEdit = findViewById(R.id.descriptionEdit);
+        loadinAnim = findViewById(R.id.loadinAnim);
+        loadinAnim.setVisibility(View.INVISIBLE);
         /* Assigning IDs to Variables End */
 
         /* Stuff related to Location Start */
@@ -265,10 +269,14 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadinAnim.setVisibility(View.VISIBLE);
+                submitBtn.setVisibility(View.INVISIBLE);
                 reportForm.setDescription(descriptionEdit.getText().toString().trim());
                 String description = descriptionEdit.getText().toString().trim();
                 if(reportForm.getLat()==0 || reportForm.getLon()==0 || description.length()<=0 || reportForm.getDescription()== null || reportForm.getTime() == null || reportForm.getDate() == null || reportForm.getIncident().equals("Not Selected"))
                 {
+                    loadinAnim.setVisibility(View.INVISIBLE);
+                    submitBtn.setVisibility(View.VISIBLE);
                     if(reportForm.getLat()==0 || reportForm.getLon()==0 || reportForm.getAddress() == null)
                     {
                         Toast.makeText(reportSubmission.this, "Please set your location!", Toast.LENGTH_SHORT).show();
@@ -351,32 +359,24 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
-                                                            reportForm.setIncident("Not Selected");
-                                                            reportForm.setReportID(null);
-                                                            reportForm.setCity(null);
-                                                            reportForm.setAddress(null);
-                                                            reportForm.setLat(0);
-                                                            reportForm.setLon(0);
-                                                            reportForm.setDate(null);
-                                                            reportForm.setTime(null);
-                                                            reportForm.setUsercnic(userClass.getCnic());
-                                                            reportForm.setUsername(userClass.getFullname());
-                                                            reportForm.setUserphone(userClass.getPhone());
-                                                            reportForm.setDescription(null);
-                                                            reportForm.setStatus("Pending");
+
                                                             image = null;
 
                                                             Toast.makeText(reportSubmission.this, "Report Submitted Successfully", Toast.LENGTH_SHORT).show();
                                                             //confirmation Screen goes here.
-                                                            Intent gotoConfirmationScreen = new Intent(reportSubmission.this, HomeScreen.class);
+                                                            Intent gotoConfirmationScreen = new Intent(reportSubmission.this, confirmation_screen.class);
                                                             startActivity(gotoConfirmationScreen);
                                                             finish();
+                                                            loadinAnim.setVisibility(View.INVISIBLE);
+                                                            submitBtn.setVisibility(View.VISIBLE);
 
                                                         }
                                                     }).addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
                                                             Toast.makeText(reportSubmission.this, "Error While submitting report.", Toast.LENGTH_SHORT).show();
+                                                            loadinAnim.setVisibility(View.INVISIBLE);
+                                                            submitBtn.setVisibility(View.VISIBLE);
                                                         }
                                                     });
                                                 /* Report Submission End */
@@ -518,5 +518,12 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent gotoConfirmationScreen = new Intent(reportSubmission.this, HomeScreen.class);
+        startActivity(gotoConfirmationScreen);
+        finish();
     }
 }

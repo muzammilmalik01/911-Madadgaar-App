@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.user_search_report"
+    android:background="@color/primaryBackground"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search Reports"
+                android:textSize="35sp"
+                android:fontFamily="@font/euclidmedium"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/primaryText"/>
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/default_logo"
+                android:layout_gravity="left"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/searchBar"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:ems="10"
+                android:layout_weight="2"
+                android:inputType="number"
+                android:background="@drawable/edittext_field"
+                android:hint="Enter Report No"
+                android:paddingLeft="10dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/euclidmedium"
+                android:textColor="@color/primaryBackground"
+                android:textColorHint="@color/primaryBackground"/>
+
+            <ImageView
+                android:id="@+id/searchBtn"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/searchicon"
+                android:layout_gravity="center"
+                />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/loadinAnim"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loadinganim"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/reportInfoSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/usreportnotxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Report No#"
+                android:fontFamily="@font/euclidbold"
+                android:textSize="30sp"
+                android:textColor="@color/secondaryText"
+                />
+
+            <TextView
+                android:id="@+id/usincidenttxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Incident"
+                android:fontFamily="@font/euclidmedium"
+                android:textSize="21sp"
+                android:textColor="@color/primaryText"/>
+
+            <TextView
+                android:id="@+id/usstatusTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:fontFamily="@font/euclidmedium"
+                android:textSize="20sp"
+                android:textColor="@color/primaryText"/>
+
+            <TextView
+                android:id="@+id/ustimeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:fontFamily="@font/euclidmedium"
+                android:textSize="20sp"
+                android:textColor="@color/primaryText"/>
+
+            <TextView
+                android:id="@+id/usdateTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:fontFamily="@font/euclidmedium"
+                android:textSize="20sp"
+                android:textColor="@color/primaryText"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/userTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="User"
+                    android:fontFamily="@font/euclidbold"
+                    android:textSize="30sp"
+                    android:textColor="@color/secondaryText"/>
+
+                <TextView
+                    android:id="@+id/ususernameTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="18sp"
+                    android:textColor="@color/primaryText"/>
+
+                <TextView
+                    android:id="@+id/ususercnicTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cnic"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="18sp"
+                    android:textColor="@color/primaryText"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/usdescriptionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:fontFamily="@font/euclidbold"
+                    android:textSize="30sp"
+                    android:textColor="@color/secondaryText"/>
+
+                <TextView
+                    android:id="@+id/usdescriptiontxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="18sp"
+                    android:textColor="@color/primaryText"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/locationTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:fontFamily="@font/euclidbold"
+                    android:textSize="30sp"
+                    android:textColor="@color/secondaryText"/>
+
+                <TextView
+                    android:id="@+id/usaddresstxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="18sp"
+                    android:textColor="@color/primaryText"/>
+
+                <TextView
+                    android:id="@+id/uscityTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="18sp"
+                    android:textColor="@color/primaryText"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/proofTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Proof"
+                    android:fontFamily="@font/euclidbold"
+                    android:textSize="30sp"
+                    android:textColor="@color/secondaryText"/>
+
+                <TextView
+                    android:id="@+id/usimageTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Attached / Not Attached"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="17sp"
+                    android:textColor="@color/primaryText"/>
+
+                <ImageView
+                    android:id="@+id/usproofImage"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    app:srcCompat="@drawable/picture"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/commentSection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comments"
+                    android:fontFamily="@font/euclidbold"
+                    android:textSize="30sp"
+                    android:textColor="@color/secondaryText"/>
+
+                <TextView
+                    android:id="@+id/uscommentTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:fontFamily="@font/euclidregular"
+                    android:textSize="17sp"
+                    android:textColor="@color/primaryText"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

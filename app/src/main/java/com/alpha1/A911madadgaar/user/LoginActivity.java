@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alpha1.A911madadgaar.OTP.OTP_Send;
@@ -21,11 +22,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
-    Button login,register;
+    Button login;
     EditText cnic, phone;
     String CNIC,PHONE;
     FirebaseFirestore Database;
     ImageView adminBtn;
+    TextView register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +43,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CNIC = cnic.getText().toString().trim();
                 PHONE = phone.getText().toString().trim();
-                if(CNIC.length() <13 || PHONE.length() <10)
+                if(CNIC.length() !=13 || PHONE.length() !=10)
                 {
-                    Toast.makeText(LoginActivity.this, "Incomplete/Invalid Data Entered.", Toast.LENGTH_SHORT).show();
+                    if(CNIC.length() !=13)
+                    {
+                        Toast.makeText(LoginActivity.this, "Enter your 13 digit CNIC.", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(LoginActivity.this, "Enter 10 digit phone number.\nFormat: 3xxxxxxxxx ", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
                 else
                 {
@@ -58,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
                                         DocumentSnapshot documentSnapshot =  task.getResult();
                                         if(documentSnapshot != null && documentSnapshot.exists()) //checking is CNIC is already registered.
                                         {
-                                            Toast.makeText(LoginActivity.this, "User Found", Toast.LENGTH_SHORT).show();
                                             if(documentSnapshot.exists())
                                             {
                                                 String phonefromdb = documentSnapshot.getString("PHONE");

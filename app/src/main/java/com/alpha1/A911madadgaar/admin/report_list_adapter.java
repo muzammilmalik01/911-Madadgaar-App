@@ -1,5 +1,6 @@
 package com.alpha1.A911madadgaar.admin;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -47,10 +48,10 @@ public class report_list_adapter extends RecyclerView.Adapter<report_list_adapte
         holder.viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Button Clicked! ", Toast.LENGTH_SHORT).show();
                 Intent gotoViewReport = new Intent(context, admin_view_report.class);
                 gotoViewReport.putExtra("reportno",report.reportno);
                 context.startActivity(gotoViewReport);
+                ((Activity)context).finish();
             }
         });
 

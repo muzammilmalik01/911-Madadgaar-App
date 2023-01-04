@@ -62,7 +62,6 @@ public class admin_login extends AppCompatActivity {
                                         String dbpin = documentSnapshot.getString("adminpin");
                                         if(dbpin.equals(adminpin))
                                         {
-                                            Toast.makeText(admin_login.this, "Valid User", Toast.LENGTH_SHORT).show();
                                             sharedPreferences = getApplicationContext().getSharedPreferences("ADMINID",MODE_PRIVATE);
                                             SharedPreferences.Editor myEdit = sharedPreferences.edit();
                                             myEdit.putString("ID",adminid);

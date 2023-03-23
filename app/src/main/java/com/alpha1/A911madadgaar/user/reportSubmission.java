@@ -108,9 +108,9 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
         collectLocation = findViewById(R.id.getData);
         mapView = findViewById(R.id.mapView);
         spinner = findViewById(R.id.incident_spinner);
-        collectDT = findViewById(R.id.setDTbtn);
-        date_txt = findViewById(R.id.date_txt);
-        time_txt = findViewById(R.id.time_txt);
+//        collectDT = findViewById(R.id.setDTbtn);
+//        date_txt = findViewById(R.id.date_txt);
+//        time_txt = findViewById(R.id.time_txt);
         selectIncidentTxt = findViewById(R.id.selectIncidentTxt);
         selectImage = findViewById(R.id.imageSelectButton);
         proof = findViewById(R.id.proofImageView);
@@ -253,12 +253,12 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
             }
 
         }); //collect User's Location.
-        collectDT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setTimeDate();
-            }
-        }); //collect user's device Date & Time.
+//        collectDT.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setTimeDate();
+//            }
+//        }); //collect user's device Date & Time.
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -271,6 +271,7 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
             public void onClick(View v) {
                 loadinAnim.setVisibility(View.VISIBLE);
                 submitBtn.setVisibility(View.INVISIBLE);
+                setTimeDate();
                 reportForm.setDescription(descriptionEdit.getText().toString().trim());
                 String description = descriptionEdit.getText().toString().trim();
                 if(reportForm.getLat()==0 || reportForm.getLon()==0 || description.length()<=0 || reportForm.getDescription()== null || reportForm.getTime() == null || reportForm.getDate() == null || reportForm.getIncident().equals("Not Selected"))
@@ -293,6 +294,7 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
                     {
                         Toast.makeText(reportSubmission.this, "Please set Date & Time!", Toast.LENGTH_SHORT).show();
                     }
+
                 }
                 else
                 {
@@ -434,14 +436,14 @@ public class reportSubmission extends AppCompatActivity implements OnMapReadyCal
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         String currentDateString = dateFormat.format(calendar.getTime());
         reportForm.setDate(currentDateString); //date set
-        date_txt.setText("Date: "+ currentDateString);// set on TextView
+        //date_txt.setText("Date: "+ currentDateString);// set on TextView
 
         dateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         String currentTimeString = dateFormat.format(calendar.getTime());
         reportForm.setTime(currentTimeString); //date set
-        time_txt.setText("Time: "+ currentTimeString);// set on TextView
+        //time_txt.setText("Time: "+ currentTimeString);// set on TextView
 
-        Toast.makeText(reportSubmission.this, "Time & Date Successfully.", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(reportSubmission.this, "Time & Date Successfully.", Toast.LENGTH_SHORT).show();
     } //function to set Time and Date.
     /* All Buttons End*/
 

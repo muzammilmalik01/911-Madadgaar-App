@@ -86,14 +86,14 @@ public class LoginActivity extends AppCompatActivity {
                                             }
                                             else
                                             {
-                                                Toast.makeText(LoginActivity.this, "Document Snapshot Doesnt Exists", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(LoginActivity.this, "Citizen not registered", Toast.LENGTH_SHORT).show();
                                             }
 
                                         }
                                     }
                                     else
                                     {
-
+                                        Toast.makeText(LoginActivity.this, "Citizen not registered", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });

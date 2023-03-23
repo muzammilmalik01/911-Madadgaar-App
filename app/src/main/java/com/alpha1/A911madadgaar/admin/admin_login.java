@@ -79,14 +79,14 @@ public class admin_login extends AppCompatActivity {
                                     }
                                     else
                                     {
-                                        Toast.makeText(admin_login.this, "ID not found.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(admin_login.this, "Admin ID not found.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                 }
                 else
                 {
-                    Toast.makeText(admin_login.this, "Please Enter the details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(admin_login.this, "Please enter the credentials.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

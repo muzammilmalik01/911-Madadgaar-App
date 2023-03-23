@@ -67,7 +67,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCfDKpDpKhGZKsXJ0DZYC3eQFRo55MBJ0A" />
+            android:${{secrets.google_geo_api_key}} />
 
         <activity
             android:name=".user.reportSubmission"

@@ -10,6 +10,7 @@ This is a really basic app and can/will be improved by adding many features such
 P.S This app was built with in 5 days. Logos were designed in Canva. UI is really basic, Lottie Animations were used to make the UI look better. The backend is powered by Google Firebase. Firestore is used for better data management. Proof (media) is also stored on Google Firestore. Google Firebase is also used for authentication (OTP) during Sign-Up and Login.
 
 Can be viewed at: https://www.linkedin.com/in/muhammad-muzamil-dev/
+APK + Documentation: https://drive.google.com/drive/folders/1IhvaBPJK8LJMBkh_vDxwzz8EW14t-fSo?usp=sharing (Admin ID: 12345, Admin Pin: 12345)
 
 
 ## Screenshots
